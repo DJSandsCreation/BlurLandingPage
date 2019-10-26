@@ -12,7 +12,7 @@ body{
 	/*100 view port height to take over the browser, it will take up the whole height */
 	height: 100vh;
 	widows: 100%;
-	background-image: url( coder.jpeg);
+	background-image: url(coder.jpeg);
 	/*background properties */
 	background-size: cover;
 	background-repeat: no-repeat;
