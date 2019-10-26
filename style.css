@@ -1,0 +1,180 @@
+body{
+	/*using rgba to have opacity control, 9 was pretty dark, so used 7, used o margin */
+	background: rgba(0,0,0,0.7);
+	margin:0;
+	color: #ffffff; 
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/*to create the hover blur effect, cant put effect on showcase or using a child element but will use css-sudo called after */
+.showcase::after {
+	/*could put text/content here */
+	content:"";
+	/*100 view port height to take over the browser, it will take up the whole height */
+	height: 100vh;
+	widows: 100%;
+	background-image: url( coder.jpeg);
+	/*background properties */
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	/*wont show till request to display as a block */
+	display: block;
+	/*filter property to blur and pixels that you want, prefix of webkit filter as may need it for other browsers */
+	/*other than blur a few other options */
+	filter: blur(10px);
+	/*the default state to blur and then we hover and then the logo blur- functionality, transisitions */
+	-webkit-filter: blur(10px);	
+	/*transitioning - 1000 miliseconds*/
+	transition: all 1000ms;
+}
+/*hover effect */
+.showcase:hover::after{
+	filter: blur(0px);
+	-webkit-filter: blur(0px);
+}
+
+/* for the logo and content to go blur instead of the showcase image, showcase, hover and class of content */
+.showcase:hover .content {
+	filter: blur(2px);
+	-webkit-filter: blur(2px);
+}
+
+/* so we want the conten, ie logo, text etc inside the actual showcase image area and we need to size them too, dont necessarily need to put the .content before but it makes things clearer and neater*/
+.content {
+	position: absolute;
+/* z-index, the higher it is the closer it is to you the viewer */
+	z-index: 1;
+	/*positioning logo */
+	top: 10%;
+	left: 50%;
+	margin-top: 105px;
+	margin-left: -145px;
+	width: 500px;
+	height: 350px;
+	text-align: center;
+	/* effect 1 sec*/
+	/* floats in from the left */
+	transition: all 1000ms;
+}
+
+.content .logo{
+	height: 300px;
+    width: 500px;
+}
+
+.content .title {
+	/* rem units, 1 rem = whatever the html elemet is, eg 16px x 2 */
+	font-size: 2.2rem;
+	/*move text a bit lower from logo */
+	margin-top: 1rem;
+}
+
+.content .text {
+	line-height: 1.7;
+	margin-top: 1rem;
+}
+/* services, section grid 3 class */
+/*container to middle with max width */
+.container {
+	max-width: 960px;
+	margin: auto;
+	overflow: hidden;
+	padding: 4rem 1rem;
+}
+/*colums, grids*/
+.grid-3 {
+	display: grid;
+	/*define grid , template - repeat(3, 1fr)  equals to 1fr 1fr 1fr*/
+	grid-template-columns: repeat(3, 1fr);
+	/* grid-gap: 20px; tag is now obsolete  now column-gap: 20px;*/
+	column-gap: 20px;
+	/*background, light, set class on about section */
+}
+/*center class*/
+.center {
+	text-align: center;
+	margin: auto;
+}
+/*setting bg light and dark classes*/
+.bg-light {
+	background: #f4f4f4;
+	color: #333333;
+}
+/*reversed light and dark*/
+.bg-dark {
+	background: #333333;
+	color: #f4f4f4;
+}
+/*pc icon area, we want to coloums*/
+.grid-2 {
+	display: grid;
+	margin-left: 10px;
+	padding-top: 20px;
+	/*define grid , template - repeat(3, 1fr)  equals to 1fr 1fr 1fr*/
+	grid-template-columns: 1fr, 2fr;
+	column-gap: 20px;
+}
+/*pargraphs have a default of margin 10px therefore creating a blcak area round the text*/
+footer p {
+	margin: 0;
+}
+footer {
+	padding: 2.2rem;
+}
+
+/*media queries, to get grid 3 to stack upon smaller devices*/
+@media (max-width: 560px) {
+	/*smaller screens -  reduce view points height to half*/
+    .showcase::after {
+	height: 50vh;
+	/*content seems to ovelap*/
+		}
+	.content {
+		top: 5%;
+		margin-top: 5px;
+
+	}
+	/*make logo smaller*/	
+	.content .logo {
+		height: 180px;
+		width: 260px;
+		text-align: center;
+		margin-top: 105px;
+		margin-left: -145px;
+		top: 10%;
+		left: 50%;
+		text-align: center;
+	}
+	.content .title {
+		font-size: 25px;
+		text-align: center;
+		margin-left: -145px;
+		
+		
+	}
+	/*text under logo to not display*/	
+	.content .text {
+		display: none;
+	}
+	/*grid3 to be stacked not coloumns, 1 row*/
+	.grid-3, .grid-2 {
+		grid-template-columns: 1fr;
+		padding-top: 105px;
+	}
+	/*border between services divs*/
+	.services div {
+		border-bottom: #333333 dashed 1px;
+		padding: 1.2rem 1 rem;
+	}
+}
+
+/*landscape view for responsive design*/
+@media (max-height:500px) {
+	.content .title,
+	.content .text {
+		display:none;
+	}
+	.content {
+		top: 0;
+	}
+}
